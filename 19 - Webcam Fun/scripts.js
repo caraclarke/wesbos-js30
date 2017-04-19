@@ -32,6 +32,15 @@ function paintToCanvas() {
 function takePhoto() {
   snap.currentTime = 0;
   snap.play();
+
+  // take data out of canvas
+  const data = canvas.toDataURL('image/jpeg'); // or png or anything(ish)
+  const link = document.createElement('a');
+  link.href = data;
+  link.setAttribute('download', 'snapshot');
+  // link.textContext('Download Img');
+  link.innerHTML = `<img src="${data}" alt="Snapshot" />`;
+  strip.insertBefore(link, strip.firstChild);
 }
 
 getVideo();
